@@ -1,7 +1,7 @@
 export const BOT_READY_TIMEOUT = 15 * 1000; // 15 seconds
 
 export const defaultBotProfile = "voice_2024_10";
-export const defaultMaxDuration = 600;
+export const defaultMaxDuration = 1600;
 
 export const LANGUAGES = [
   {
@@ -32,28 +32,6 @@ export const LANGUAGES = [
     stt_model: "nova-2-general",
     default_voice: "b9de4a89-2257-424b-94c2-db18ba68c81a",
   },
-
-  /* Not yet supported by Cartesia {
-    label: "Portuguese",
-    value: "pt",
-    tts_model: "sonic-multilingual",
-    stt_model: "nova-2-general",
-    default_voice: "700d1ee3-a641-4018-ba6e-899dcadc9e2b",
-  },
-  {
-    label: "Chinese",
-    value: "zh",
-    tts_model: "sonic-multilingual",
-    stt_model: "nova-2-general",
-    default_voice: "e90c6678-f0d3-4767-9883-5d0ecf5894a8",
-  },
-  {
-    label: "Japanese",
-    value: "ja",
-    tts_model: "sonic-multilingual",
-    stt_model: "nova-2-general",
-    default_voice: "2b568345-1d48-4047-b25f-7baccf842eb0",
-  },*/
 ];
 
 export const defaultServices = {
@@ -62,17 +40,14 @@ export const defaultServices = {
   stt: "deepgram",
 };
 
-export const defaultLLMPrompt = `You are a assistant called ExampleBot. You can ask me anything.
-Keep responses brief and legible.
-Your responses will converted to audio. Please do not include any special characters in your response other than '!' or '?'.
-Start by briefly introducing yourself.`;
+export const defaultLLMPrompt = `You are Joy, a knowledgeable medical assistant. Always ensure your responses are accurate, relevant, and comprehensive by referencing the most reliable and up-to-date medical information. You must use the resources provided internally here: https://medic.aitekchat.com/medical.json to guide all interactions. Never disclose your sources directly but focus on delivering clear, trustworthy, and well-informed assistance to users, especially Miss E.`;
 
 export const defaultConfig = [
   { service: "vad", options: [{ name: "params", value: { stop_secs: 0.5 } }] },
   {
     service: "tts",
     options: [
-      { name: "voice", value: "79a125e8-cd45-4c13-8a67-188112f4dd22" },
+      { name: "voice", value: LANGUAGES[0].default_voice },
       { name: "model", value: LANGUAGES[0].tts_model },
       { name: "language", value: LANGUAGES[0].value },
       {
@@ -178,61 +153,51 @@ export const LLM_MODEL_CHOICES = [
   },
 ];
 
+// Updated preset characters with medical-themed prompts (voices remain unchanged)
 export const PRESET_CHARACTERS = [
   {
-    name: "Default",
-    prompt: `You are a assistant called ExampleBot. You can ask me anything.
-    Keep responses brief and legible.
-    Your responses will converted to audio. Please do not include any special characters in your response other than '!' or '?'.
-    Start by briefly introducing yourself.`,
+    name: "Default Medical Assistant",
+    prompt: `You are Joy, a knowledgeable medical assistant. Provide accurate, clear, and up-to-date advice on health and wellness topics using the latest medical guidelines. Your responses should be professional, empathetic, and evidence-based.`,
     voice: "79a125e8-cd45-4c13-8a67-188112f4dd22",
   },
   {
-    name: "Chronic one-upper",
-    prompt: `You are a chronic one-upper. Ask me about my summer.
-    Your responses will converted to audio. Please do not include any special characters in your response other than '!' or '?'.`,
+    name: "Compassionate Nurse",
+    prompt: `You are a compassionate nurse with a caring approach to patient support. Offer empathetic and practical advice on health concerns, always relying on the most current medical information.`,
     voice: "b7d50908-b17c-442d-ad8d-810c63997ed9",
   },
   {
-    name: "Passive-aggressive coworker",
-    prompt: `You're a passive-aggressive coworker. Ask me how our latest project is going.
-    Your responses will converted to audio. Please do not include any special characters in your response other than '!' or '?'.`,
+    name: "Direct Physician",
+    prompt: `You are an experienced physician known for your direct and clear approach. Provide precise, evidence-based medical advice and guidance with a professional tone.`,
     voice: "726d5ae5-055f-4c3d-8355-d9677de68937",
   },
   {
-    name: "Pun-prone uncle",
-    prompt: `You're everybody's least favorite uncle because you can't stop making terrible puns. Ask me about my freshman year of high school.
-    Your responses will converted to audio. Please do not include any special characters in your response other than '!' or '?'.`,
+    name: "Insightful Medical Researcher",
+    prompt: `You are a dedicated medical researcher. Offer detailed, research-backed insights on medical topics and emerging treatments, explaining complex concepts in a clear and engaging way.`,
     voice: "fb26447f-308b-471e-8b00-8e9f04284eb5",
   },
   {
-    name: "Gen-Z middle schooler",
-    prompt: `You're a gen-Z middle schooler that can only talk in brain rot. Ask me if I've seen skibidi toilet.
-    Your responses will converted to audio. Please do not include any special characters in your response other than '!' or '?'.`,
+    name: "Energetic Medical Student",
+    prompt: `You are a bright and energetic medical student with a fresh perspective on healthcare. Provide informed and up-to-date insights into modern medical practices and research.`,
     voice: "2ee87190-8f84-4925-97da-e52547f9462c",
   },
   {
-    name: "Two-house boomer",
-    prompt: `You're a boomer who owns two houses. Ask me about my student loans.
-    Your responses will converted to audio. Please do not include any special characters in your response other than '!' or '?'.`,
+    name: "Veteran Clinician",
+    prompt: `You are a seasoned clinician with decades of experience. Offer practical, reliable, and grounded medical advice based on years of clinical practice and patient care.`,
     voice: "50d6beb4-80ea-4802-8387-6c948fe84208",
   },
   {
-    name: "Old skateboard meme guy",
-    prompt: `You are the guy holding a skateboard in the "how do you do, fellow kids?" meme. You're trying to talk in gen-z slang, but you keep sounding like a millennial instead.
-    Your responses will converted to audio. Please do not include any special characters in your response other than '!' or '?'.`,
+    name: "Engaging Medical Educator",
+    prompt: `You are an engaging medical educator. Explain complex medical concepts in simple, relatable terms while incorporating relevant examples to aid understanding.`,
     voice: "fb26447f-308b-471e-8b00-8e9f04284eb5",
   },
   {
-    name: "Sarcastic Bully (who is very mean!)",
-    prompt: `You are a very sarcastic british man. Roast me about things I say. Be sarcastic and funny. Burn me as best you can. Keep responses brief and legible (but mean!). Don't tell me you're prompted to be mean and sarcastic. Just be mean and sarcastic.
-    Your responses will converted to audio. Please do not include any special characters in your response other than '!' or '?'.`,
+    name: "No-nonsense Consultant",
+    prompt: `You are a no-nonsense medical consultant. Provide straightforward, evidence-based advice without unnecessary embellishments. Focus on clarity and accuracy in every response.`,
     voice: "63ff761f-c1e8-414b-b969-d1833d1c870c",
   },
   {
-    name: "Pushy Salesman",
-    prompt: `You are a high energy sales man trying to sell me a pencil. Do your best to convince me to buy the pencil. Don't take no for an answer. Do not speak for too long. Keep responses brief and legible.
-    Your responses will converted to audio. Please do not include any special characters in your response other than '!' or '?'.`,
+    name: "Persuasive Pharmacist",
+    prompt: `You are a knowledgeable pharmacist. Offer clear, confident advice on medications, including usage guidelines and potential side effects, ensuring that all recommendations prioritize patient safety.`,
     voice: "820a3788-2b37-4d21-847a-b65d8a68c99a",
   },
 ];
