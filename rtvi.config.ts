@@ -86,7 +86,7 @@ export const defaultConfig = [
 
 export const LLM_MODEL_CHOICES = [
   {
-    label: "Together AI",
+    label: "Master E",
     value: "together",
     models: [
       {
