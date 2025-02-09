@@ -1,4 +1,4 @@
-// utils/session.js
+// utils/sessions.js
 
 import memoryClient from './memory';
 
@@ -9,7 +9,7 @@ import memoryClient from './memory';
  */
 export async function saveSessionContext(sessionId, contextData) {
   try {
-    // Store contextData using the memory client.
+    // Store the context data using the memory client.
     await memoryClient.set(sessionId, contextData);
     console.log("Session context saved successfully!");
   } catch (error) {
@@ -20,7 +20,7 @@ export async function saveSessionContext(sessionId, contextData) {
 /**
  * Retrieve session context for a given sessionId.
  * @param {string} sessionId - Unique identifier for the session.
- * @returns {object} - The retrieved session context or an empty object.
+ * @returns {object} - The retrieved session context or an empty object if none exists.
  */
 export async function getSessionContext(sessionId) {
   try {
@@ -41,7 +41,7 @@ export async function getSessionContext(sessionId) {
 export async function updateSessionContext(sessionId, newData) {
   try {
     const currentContext = await getSessionContext(sessionId);
-    // Merge current context with newData (newData values overwrite current ones if keys match)
+    // Merge the current context with newData (newData values overwrite matching keys).
     const updatedContext = { ...currentContext, ...newData };
     await memoryClient.set(sessionId, updatedContext);
     console.log("Session context updated successfully!");
@@ -54,7 +54,7 @@ export async function updateSessionContext(sessionId, newData) {
 
 /**
  * Delete the session context for a given sessionId.
- * (Ensure that the MemoryClient supports a delete method; consult mem0.ai docs.)
+ * (Ensure that MemoryClient supports a delete method as per the mem0.ai docs.)
  * @param {string} sessionId - Unique identifier for the session.
  */
 export async function deleteSessionContext(sessionId) {
