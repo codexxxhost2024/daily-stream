@@ -16,15 +16,15 @@ export function Header() {
           <Logo className="w-[42px] h-auto aspect-square" />
         </span>
         <nav className="pointer-events-none flex-row items-center gap-8 text-lg leading-7 hidden group-hover:flex group-hover:pointer-events-auto">
-          <a href="https://bots.daily.co" target="_blank" className={aCx}>
-            Dashboard
+          <a href="https://daisy.aitekchat.com" target="_blank" className={aCx}>
+            
           </a>
           <a
-            href="https://github.com/daily-demos/daily-bots-web-demo"
+            href="https://joy.aitekchat.com/"
             target="_blank"
             className={aCx}
           >
-            Source code
+            Share
           </a>
         </nav>
       </div>
