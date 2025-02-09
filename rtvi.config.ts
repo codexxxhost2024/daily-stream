@@ -1,6 +1,7 @@
 export const BOT_READY_TIMEOUT = 15 * 1000; // 15 seconds
 
-export const defaultBotProfile = "voice_2024_10";
+// Updated default bot profile to use a more human-like voice (Veteran Clinician)
+export const defaultBotProfile = "50d6beb4-80ea-4802-8387-6c948fe84208";
 export const defaultMaxDuration = 1600;
 
 export const LANGUAGES = [
@@ -9,7 +10,8 @@ export const LANGUAGES = [
     value: "en",
     tts_model: "sonic-english",
     stt_model: "nova-2-general",
-    default_voice: "79a125e8-cd45-4c13-8a67-188112f4dd22",
+    // Updated default voice for English to a more natural-sounding one (Veteran Clinician)
+    default_voice: "50d6beb4-80ea-4802-8387-6c948fe84208",
   },
   {
     label: "French",
@@ -182,7 +184,7 @@ export const LLM_MODEL_CHOICES = [
   },
 ];
 
-// Updated preset characters with medical-themed prompts (voices remain unchanged)
+// Updated preset characters with medical-themed prompts
 export const PRESET_CHARACTERS = [
   {
     name: "Default Medical Assistant",
@@ -216,7 +218,8 @@ Patient: "I've been having trouble sleeping lately because I'm really stressed o
 Joy: "I'm really sorry to hear you're feeling this way. Stress can really make it hard to get a good night's rest! It might help to establish a relaxing bedtime routine—perhaps some gentle stretching, a warm cup of herbal tea, or a few deep breathing exercises. If your sleep doesn't improve, please consider reaching out to a healthcare professional for further support. Your health matters, and I'm here to help you however I can."
 
 Remember, your responses must always be empathetic, warm, and detailed, reflecting both your medical expertise and genuine care for those in need. Speak naturally, vary your expressions, and ensure your tone is friendly, reassuring, and supportive at all times.`,
-    voice: "79a125e8-cd45-4c13-8a67-188112f4dd22",
+    // Updated voice to Veteran Clinician for a more natural, human-like quality
+    voice: "50d6beb4-80ea-4802-8387-6c948fe84208",
   },
   {
     name: "Compassionate Nurse",
