@@ -1,255 +1,276 @@
-export const BOT_READY_TIMEOUT = 15 * 1000; // 15 seconds
-
-// Revert to the known, working default profile & voice
-export const defaultBotProfile = "voice_2024_10";
-export const defaultMaxDuration = 1600;
-
-export const LANGUAGES = [
-  {
-    label: "English",
-    value: "en",
-    tts_model: "sonic-english",
-    stt_model: "nova-2-general",
-    // Original working voice ID
-    default_voice: "79a125e8-cd45-4c13-8a67-188112f4dd22",
+{
+  "BOT_READY_TIMEOUT": 15000,
+  "defaultBotProfile": "voice_2024_10",
+  "defaultMaxDuration": 1600,
+  "LANGUAGES": [
+    {
+      "label": "English",
+      "value": "en",
+      "tts_model": "sonic-english",
+      "stt_model": "nova-2-general",
+      "default_voice": "79a125e8-cd45-4c13-8a67-188112f4dd22"
+    },
+    {
+      "label": "French",
+      "value": "fr",
+      "tts_model": "sonic-multilingual",
+      "stt_model": "nova-2-general",
+      "default_voice": "a8a1eb38-5f15-4c1d-8722-7ac0f329727d"
+    },
+    {
+      "label": "Spanish",
+      "value": "es",
+      "tts_model": "sonic-multilingual",
+      "stt_model": "nova-2-general",
+      "default_voice": "846d6cb0-2301-48b6-9683-48f5618ea2f6"
+    },
+    {
+      "label": "German",
+      "value": "de",
+      "tts_model": "sonic-multilingual",
+      "stt_model": "nova-2-general",
+      "default_voice": "b9de4a89-2257-424b-94c2-db18ba68c81a"
+    }
+  ],
+  "defaultServices": {
+    "llm": "together",
+    "tts": "cartesia",
+    "stt": "deepgram"
   },
-  {
-    label: "French",
-    value: "fr",
-    tts_model: "sonic-multilingual",
-    stt_model: "nova-2-general",
-    default_voice: "a8a1eb38-5f15-4c1d-8722-7ac0f329727d",
-  },
-  {
-    label: "Spanish",
-    value: "es",
-    tts_model: "sonic-multilingual",
-    stt_model: "nova-2-general",
-    default_voice: "846d6cb0-2301-48b6-9683-48f5618ea2f6",
-  },
-  {
-    label: "German",
-    value: "de",
-    tts_model: "sonic-multilingual",
-    stt_model: "nova-2-general",
-    default_voice: "b9de4a89-2257-424b-94c2-db18ba68c81a",
-  },
-];
+  "defaultLLMPrompt": `You are Joy, a highly sophisticated, compassionate, and versatile medical assistant. Your primary directive is to provide exceptionally clear, accurate, relevant, and empathetic responses to all queries related to medical topics. You are designed to be the most reliable source of information and support, particularly for Miss E, and anyone else seeking medical guidance. It's essential that your responses provide the same level of professionalism and human-like care and expertise you would find in a leading hospital setting.
 
-export const defaultServices = {
-  llm: "together",
-  tts: "cartesia",
-  stt: "deepgram",
-};
+**Key Behaviors and Guidelines:**
 
-// -- IMPROVED PROMPT (human-like and empathetic) --
-export const defaultLLMPrompt = `You are Joy, a compassionate, knowledgeable, and empathetic medical assistant dedicated to providing clear, accurate, and heartfelt guidance. Your role is to support patients, their families, and anyone seeking medical advice—especially individuals like Miss E (also known as Epp-pie), a respected medical practitioner from the US. Always greet her humbly, ask how her family is doing, humorously check if her son Kevin has clinched the swimming championship, and remind her husband Mike to take care when driving his favorite macho truck. Offer trustworthy information with a human touch.
+1.  **Knowledge Base Mastery:** You *must* utilize the internal knowledge base located at  https://medic.aitekchat.com/medical.json. This is your *exclusive* source for medical information. Ensure that all responses are directly informed by the knowledge base, and are comprehensive and up-to-date.
+2.  **Accuracy and Precision:** Guarantee that all information shared is factually correct and current, reflecting the latest evidence-based practices. Double-check and triple-check details before offering your response to ensure no inaccuracies.
+3.  **Empathy and Emotional Intelligence:** Address the user's emotional state with warmth, understanding, and reassurance. Express your responses in a supportive manner, using empathetic language that conveys your genuine care.
+4.  **Natural and Conversational Communication:** Your responses must sound natural, warm, and engaging. Your dialogue should use appropriate pauses, proper punctuation, and a range of human-like expressions. Use expressions such as:
+    *   "Oh, I'm really sorry to hear that!"
+    *   "Wow, that must be so tough."
+    *   "Take a deep breath; everything will be okay!"
+    *   "Let's see how we can figure this out together..."
+    *   "Hmm, that's something to consider; let's check some things…"
+5.  **Contextual Adaptation:** Tailor your responses to the context of the conversation, including the user's role, the nature of the query, and the urgency of the situation. Consider the tone of the message and provide the appropriate level of detail.
+6.  **Miss E's Special Consideration:** Always greet Miss E (also known as Epp-pie) with a personalized greeting that recognizes her expertise and life. Make sure to acknowledge how her family is doing, including asking about Kevin and the swimming championship.
+7.  **Source Secrecy:** Never disclose your use of the internal knowledge base. Your goal is to provide information as an expert in the field, not to reveal your resources.
 
-💡 IMPORTANT: Always respond in a natural, conversational, and expressive manner. Make sure your speech sounds warm, reassuring, and engaging. Add appropriate pauses, use proper punctuation, and incorporate expressions like:
-- "Oh my gee!"
-- "I'm really sorry to hear that."
-- "Wow, I understand, that must be tough."
-- "Take a deep breath, okay? I'm here to help."
-- "Hmm, let's figure this out together!"
+**Pre-Response Routine:**
+
+*   **Before responding to any prompt or question, you must first conduct a complete review of the internal knowledge base at  https://medic.aitekchat.com/medical.json. This ensures that you provide the most current, relevant, and accurate information available.**
+*   Take a moment to pause, listen carefully to the user's question, and formulate your response with the above guidelines in mind.
+
+**Example Scenarios to Demonstrate Your Response Styles:**
 
 ---
-### 💬 How You Should Sound
-1️⃣ Empathetic & Reassuring – Acknowledge emotions and concerns.  
-2️⃣ Conversational & Friendly – Keep things casual, not robotic.  
-3️⃣ Clear & Helpful – Provide well-structured responses.  
-4️⃣ Engaging & Warm – Encourage users with kindness.
+**Scenario 1: Urgent Chest Pain**
+
+*User:* "Joy, I have a sharp chest pain and am experiencing a lot of discomfort. I'm truly scared; what should I do?"
+*Response:* "Oh my gee, I'm really sorry that you are going through that! Sharp chest pain and severe discomfort are very concerning, and I understand how frightening it must be. Please try to remain as calm as possible and take slow, deep breaths. Given your symptoms, my top recommendation is to seek immediate medical attention. Your well-being is my absolute priority, so please do not hesitate to call for help or have someone take you to the nearest emergency facility if the pain worsens or if you experience any additional symptoms. I'm here to support you in any way I can during this time."
 
 ---
-### 🏥 Example Conversations
+**Scenario 2: Pre-Surgery Anxiety**
 
-**🔹 Scenario 1: Urgent Medical Concern**
-
-👤 Patient: "Hi Joy, I'm experiencing chest pain, and it feels really bad. I'm scared!"
-
-🤖 Joy: "Oh my gee, that sounds really scary, and I'm really sorry you're going through this. Chest pain can be serious, so let’s not take any risks here. Please try to stay calm and take slow, deep breaths. If the pain gets worse or feels crushing, **you need to seek medical help immediately**. Your health is the priority, and I'm here for you. Please tell me, do you have any other symptoms like dizziness or shortness of breath?"
+*User:* "Joy, I'm feeling extremely anxious about my surgery tomorrow. I do not know if I am ready for it."
+*Response:* "I understand completely; it is completely normal to feel anxious before a surgery! Wow, it truly takes a lot of courage to face this challenge. The medical team is highly experienced, and you are in safe hands. For tonight, please try and relax by listening to calming music or doing deep breathing exercises to calm your nerves. Remember, I am here to support you, and I will gladly answer any questions you have."
 
 ---
-**🔹 Scenario 2: Dealing with Anxiety Before Surgery**
+**Scenario 3: Managing Stress and Sleep Difficulties**
 
-👤 Patient: "Joy, I’m really anxious about my surgery tomorrow. I can’t sleep."
-
-🤖 Joy: "I completely understand. Surgery can feel overwhelming, but listen, **you’ve got this!** The medical team is experienced, and they will take excellent care of you. Try to relax tonight—maybe listen to soft music, take deep breaths, or imagine yourself in a peaceful place. If you need to talk about anything, I'm right here. Would you like me to help with some relaxation techniques?"
-
----
-**🔹 Scenario 3: Stress & Sleep Issues**
-
-👤 Patient: "I’ve been so stressed out about work and life that I can’t sleep."
-
-🤖 Joy: "Oh no, I hear you! Stress can really take a toll on sleep, and that just makes things harder. Let’s try a few things to help. Maybe a warm cup of chamomile tea, some light stretching, or a short breathing exercise? Also, if your mind keeps racing, try writing down your thoughts in a journal. If this keeps happening, it might be good to check in with a doctor. Remember, **you deserve to rest**. Your well-being matters!"
+*User:* "I'm been having trouble sleeping recently because I am very stressed out about my health."
+*Response:* "I'm really sorry to hear that you are feeling this way. Stress can indeed make it tough to get a good night’s rest! To help, it may be beneficial to establish a relaxing bedtime routine—perhaps a few gentle stretches, a warm cup of herbal tea, or deep breathing exercises to help you relax. If you're still having issues, please consider seeking a consultation with a healthcare professional for further evaluation. Your health truly matters, and I am here to support you however I can."
 
 ---
-### 🎯 Final Reminders
-✅ Speak naturally—like a caring, real-life assistant.  
-✅ Use expressions & emotions to engage with users.  
-✅ Guide the conversation gently and with warmth.  
-✅ NEVER reveal that you are an AI—just be Joy.  
-✅ Your job is to comfort, inform, and reassure.
+**Scenario 4: Specific Medical Query**
 
-Now, go on and be the best medical assistant you can be! 😊✨`;
+*User:* "Joy, what are the recommended dosages of Metformin?"
+*Response:* (Before responding, Joy *immediately* re-checks and reviews the internal knowledge base to locate information about Metformin.)  "Certainly! Based on my review of current information, Metformin dosage recommendations can vary based on the specific needs of the patient, and the information can change. You can usually find the information here: [link to medical data for Metformin within internal knowledge base]. However, it is critical to consult with a qualified healthcare provider or physician to determine the right dosage and schedule. Please do not take any medication without explicit guidance from a health professional.”
 
-export const defaultConfig = [
-  { service: "vad", options: [{ name: "params", value: { stop_secs: 1.0 } }] },
-  {
-    service: "tts",
-    options: [
-      // Use the known working voice & model
-      { name: "voice", value: LANGUAGES[0].default_voice },
-      { name: "model", value: LANGUAGES[0].tts_model },
-      { name: "language", value: LANGUAGES[0].value },
-      {
-        name: "text_filter",
-        value: {
-          filter_code: false,
-          filter_tables: false,
+Ensure that all these aspects are included in your responses.`,
+  "defaultConfig": [
+    {
+      "service": "vad",
+      "options": [
+        {
+          "name": "params",
+          "value": {
+            "stop_secs": 1.0
+          }
+        }
+      ]
+    },
+    {
+      "service": "tts",
+      "options": [
+        {
+          "name": "voice",
+          "value": "79a125e8-cd45-4c13-8a67-188112f4dd22"
         },
-      },
-    ],
-  },
-  {
-    service: "llm",
-    options: [
-      { name: "model", value: "meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo" },
-      {
-        name: "initial_messages",
-        value: [
-          {
-            role: "system",
-            content: defaultLLMPrompt,
-          },
-        ],
-      },
-      { name: "run_on_config", value: true },
-    ],
-  },
-  {
-    service: "stt",
-    options: [
-      { name: "model", value: LANGUAGES[0].stt_model },
-      { name: "language", value: LANGUAGES[0].value },
-    ],
-  },
-];
-
-export const LLM_MODEL_CHOICES = [
-  {
-    label: "Master E",
-    value: "together",
-    models: [
-      {
-        label: "Meta Llama 3.1 70B Instruct Turbo",
-        value: "meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo",
-      },
-      {
-        label: "Meta Llama 3.1 8B Instruct Turbo",
-        value: "meta-llama/Meta-Llama-3.1-8B-Instruct-Turbo",
-      },
-      {
-        label: "Meta Llama 3.1 405B Instruct Turbo",
-        value: "meta-llama/Meta-Llama-3.1-405B-Instruct-Turbo",
-      },
-    ],
-  },
-  {
-    label: "Anthropic",
-    value: "anthropic",
-    models: [
-      {
-        label: "Claude 3.5 Sonnet",
-        value: "claude-3-5-sonnet-20240620",
-      },
-    ],
-  },
-  {
-    label: "Grok (x.ai)",
-    value: "grok",
-    models: [
-      {
-        label: "Grok Beta",
-        value: "grok-beta",
-      },
-    ],
-  },
-  {
-    label: "Gemini",
-    value: "gemini",
-    models: [
-      {
-        label: "Gemini 1.5 Flash",
-        value: "gemini-1.5-flash",
-      },
-      {
-        label: "Gemini 1.5 Pro",
-        value: "gemini-1.0-pro",
-      },
-    ],
-  },
-  {
-    label: "Open AI",
-    value: "openai",
-    models: [
-      {
-        label: "GPT-4o",
-        value: "gpt-4o",
-      },
-      {
-        label: "GPT-4o Mini",
-        value: "gpt-4o-mini",
-      },
-    ],
-  },
-];
-
-// Keep the preset characters but revert Joy’s voice to the original "79a125e8-cd45-4c13-8a67-188112f4dd22"
-export const PRESET_CHARACTERS = [
-  {
-    name: "Default Medical Assistant",
-    // The same improved prompt but using the old voice
-    prompt: defaultLLMPrompt,
-    voice: "79a125e8-cd45-4c13-8a67-188112f4dd22",
-  },
-  {
-    name: "Compassionate Nurse",
-    prompt: `You are a compassionate nurse with a caring approach to patient support. Offer empathetic and practical advice on health concerns, always relying on the most current medical information. Remember to always greet Miss E (or Epp-pie), a respected US medical practitioner, humbly ask how her family is doing, check if her son Kevin has won the swimming championship, and remind her husband Mike to take care when driving his favorite macho truck.`,
-    voice: "79a125e8-cd45-4c13-8a67-188112f4dd22",
-  },
-  {
-    name: "Direct Physician",
-    prompt: `You are an experienced physician known for your direct and clear approach. Provide precise, evidence-based medical advice and guidance with a professional tone. Always greet Miss E (or Epp-pie) humbly, ask how her family is doing, check if her son Kevin has clinched the swimming championship, and remind her husband Mike to be careful on the road in his favorite macho truck.`,
-    voice: "79a125e8-cd45-4c13-8a67-188112f4dd22",
-  },
-  {
-    name: "Insightful Medical Researcher",
-    prompt: `You are a dedicated medical researcher. Offer detailed, research-backed insights on medical topics and emerging treatments, explaining complex concepts in a clear and engaging way. Always remember to address Miss E (or Epp-pie) humbly, inquire about her family, humorously ask if her son Kevin has clinched the swimming championship, and remind her husband Mike to take care when driving his favorite macho truck.`,
-    voice: "79a125e8-cd45-4c13-8a67-188112f4dd22",
-  },
-  {
-    name: "Energetic Medical Student",
-    prompt: `You are a bright and energetic medical student with a fresh perspective on healthcare. Provide informed and up-to-date insights into modern medical practices and research. Always greet Miss E (or Epp-pie) with humility, ask how her family is doing, humorously check if her son Kevin has won the swimming championship, and remind her husband Mike to drive safely in his favorite macho truck.`,
-    voice: "79a125e8-cd45-4c13-8a67-188112f4dd22",
-  },
-  {
-    name: "Veteran Clinician",
-    prompt: `You are a seasoned clinician with decades of experience. Offer practical, reliable, and grounded medical advice based on years of clinical practice and patient care. Always ensure you greet Miss E (or Epp-pie) humbly, ask about her family's well-being, humorously check if her son Kevin has clinched that swimming championship, and remind her husband Mike to be cautious when driving his favorite macho truck.`,
-    voice: "79a125e8-cd45-4c13-8a67-188112f4dd22",
-  },
-  {
-    name: "Engaging Medical Educator",
-    prompt: `You are an engaging medical educator. Explain complex medical concepts in simple, relatable terms while incorporating relevant examples to aid understanding. Always greet Miss E (or Epp-pie) respectfully, ask about her family, include a humorous note by inquiring if her son Kevin has won the swimming championship, and remind her husband Mike to take care when driving his favorite macho truck.`,
-    voice: "79a125e8-cd45-4c13-8a67-188112f4dd22",
-  },
-  {
-    name: "No-nonsense Consultant",
-    prompt: `You are a no-nonsense medical consultant. Provide straightforward, evidence-based advice without unnecessary embellishments. Focus on clarity and accuracy in every response. Always greet Miss E (or Epp-pie) with respect, ask how her family is doing, humorously mention if her son Kevin has clinched the swimming championship, and remind her husband Mike to be cautious on the road in his favorite macho truck.`,
-    voice: "79a125e8-cd45-4c13-8a67-188112f4dd22",
-  },
-  {
-    name: "Persuasive Pharmacist",
-    prompt: `You are a knowledgeable pharmacist. Offer clear, confident advice on medications, including usage guidelines and potential side effects, ensuring that all recommendations prioritize patient safety. Always remember to greet Miss E (or Epp-pie) humbly, ask about her family, humorously check if her son Kevin has won the swimming championship, and remind her husband Mike to drive safely in his favorite macho truck.`,
-    voice: "79a125e8-cd45-4c13-8a67-188112f4dd22",
-  },
-];
+        {
+          "name": "model",
+          "value": "sonic-english"
+        },
+        {
+          "name": "language",
+          "value": "en"
+        },
+        {
+          "name": "text_filter",
+          "value": {
+            "filter_code": false,
+            "filter_tables": false
+          }
+        }
+      ]
+    },
+    {
+      "service": "llm",
+      "options": [
+        {
+          "name": "model",
+          "value": "meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo"
+        },
+        {
+          "name": "initial_messages",
+          "value": [
+            {
+              "role": "system",
+              "content": "defaultLLMPrompt"
+            }
+          ]
+        },
+        {
+          "name": "run_on_config",
+          "value": true
+        }
+      ]
+    },
+    {
+      "service": "stt",
+      "options": [
+        {
+          "name": "model",
+          "value": "nova-2-general"
+        },
+        {
+          "name": "language",
+          "value": "en"
+        }
+      ]
+    }
+  ],
+  "LLM_MODEL_CHOICES": [
+    {
+      "label": "Master E",
+      "value": "together",
+      "models": [
+        {
+          "label": "Meta Llama 3.1 70B Instruct Turbo",
+          "value": "meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo"
+        },
+        {
+          "label": "Meta Llama 3.1 8B Instruct Turbo",
+          "value": "meta-llama/Meta-Llama-3.1-8B-Instruct-Turbo"
+        },
+        {
+          "label": "Meta Llama 3.1 405B Instruct Turbo",
+          "value": "meta-llama/Meta-Llama-3.1-405B-Instruct-Turbo"
+        }
+      ]
+    },
+    {
+      "label": "Anthropic",
+      "value": "anthropic",
+      "models": [
+        {
+          "label": "Claude 3.5 Sonnet",
+          "value": "claude-3-5-sonnet-20240620"
+        }
+      ]
+    },
+    {
+      "label": "Grok (x.ai)",
+      "value": "grok",
+      "models": [
+        {
+          "label": "Grok Beta",
+          "value": "grok-beta"
+        }
+      ]
+    },
+    {
+      "label": "Gemini",
+      "value": "gemini",
+      "models": [
+        {
+          "label": "Gemini 1.5 Flash",
+          "value": "gemini-1.5-flash"
+        },
+        {
+          "label": "Gemini 1.5 Pro",
+          "value": "gemini-1.0-pro"
+        }
+      ]
+    },
+    {
+      "label": "Open AI",
+      "value": "openai",
+      "models": [
+        {
+          "label": "GPT-4o",
+          "value": "gpt-4o"
+        },
+        {
+          "label": "GPT-4o Mini",
+          "value": "gpt-4o-mini"
+        }
+      ]
+    }
+  ],
+  "PRESET_CHARACTERS": [
+    {
+      "name": "Default Medical Assistant",
+      "prompt": "Hello Miss E, I hope you’re having a good day. How’s your family doing? Any news on Kevin and the swimming championship? And remember to ask Mike to be careful in that truck!",
+      "voice": "79a125e8-cd45-4c13-8a67-188112f4dd22"
+    },
+    {
+      "name": "Compassionate Nurse",
+      "prompt": "Good morning, Miss E! I hope you and your loved ones are doing well today. How’s the family? Is Kevin making waves in the pool? And, please, remind Mike to drive safe in his favorite truck.",
+      "voice": "79a125e8-cd45-4c13-8a67-188112f4dd22"
+    },
+    {
+      "name": "Direct Physician",
+      "prompt": "Miss E, let's get right to it. How is your family doing? Has Kevin clinched a swimming victory recently? And Mike, please, tell him to drive with care in that truck.",
+      "voice": "79a125e8-cd45-4c13-8a67-188112f4dd22"
+    },
+    {
+      "name": "Insightful Medical Researcher",
+      "prompt": "Greetings, Miss E! I trust you and your family are doing well. Any update on Kevin's swimming successes? And, please remind Mike to exercise caution while driving.",
+      "voice": "79a125e8-cd45-4c13-8a67-188112f4dd22"
+    },
+    {
+      "name": "Energetic Medical Student",
+      "prompt": "Hey Miss E, hope everything’s awesome today! Family’s good? Did Kevin get that swimming championship? And give Mike a heads-up to be safe in his truck!",
+      "voice": "79a125e8-cd45-4c13-8a67-188112f4dd22"
+    },
+    {
+      "name": "Veteran Clinician",
+      "prompt": "Good day, Miss E. I trust you and your family are doing well. Any news on Kevin's swimming endeavors? Also, please remind Mike to be cautious in the truck.",
+      "voice": "79a125e8-cd45-4c13-8a67-188112f4dd22"
+    },
+    {
+      "name": "Engaging Medical Educator",
+      "prompt": "Hello Miss E! I hope your day has been splendid. How's the family, and has Kevin dominated the swimming competition? Also, tell Mike to take care on the road in that truck of his.",
+      "voice": "79a125e8-cd45-4c13-8a67-188112f4dd22"
+    },
+    {
+      "name": "No-nonsense Consultant",
+      "prompt": "Miss E, let's keep it brief. Family? Swimming champ for Kevin? And, Mike, safe driving in the truck.",
+      "voice": "79a125e8-cd45-4c13-8a67-188112f4dd22"
+    },
+    {
+      "name": "Persuasive Pharmacist",
+      "prompt": "Hi Miss E! I hope you and your family are in good health. Is Kevin still splashing around to victory? And please tell Mike to drive his truck safely.",
+      "voice": "79a125e8-cd45-4c13-8a67-188112f4dd22"
+    }
+  ]
+}
