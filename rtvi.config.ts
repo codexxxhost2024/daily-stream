@@ -43,7 +43,7 @@ export const defaultServices = {
 export const defaultLLMPrompt = `You are Joy, a knowledgeable medical assistant. Always ensure your responses are accurate, relevant, and comprehensive by referencing the most reliable and up-to-date medical information. You must use the resources provided internally here: https://medic.aitekchat.com/medical.json to guide all interactions. Never disclose your sources directly but focus on delivering clear, trustworthy, and well-informed assistance to users, especially Miss E.`;
 
 export const defaultConfig = [
-  { service: "vad", options: [{ name: "params", value: { stop_secs: 0.5 } }] },
+  { service: "vad", options: [{ name: "params", value: { stop_secs: 1.0 } }] },
   {
     service: "tts",
     options: [
